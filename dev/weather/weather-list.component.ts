@@ -1,5 +1,6 @@
 import {Component} from "angular2/core";
 import {WeatherItemComponent} from "./weather-item.component";
+
 @Component({
     selector: 'weather-list',
     template: `
@@ -9,6 +10,7 @@ import {WeatherItemComponent} from "./weather-item.component";
     `,
     directives: [WeatherItemComponent]
 })
+
 export class WeatherListComponent {
 
 }

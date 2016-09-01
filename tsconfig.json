@@ -27,6 +27,7 @@
     "./dev/boot.ts",
     "./dev/weather/weather-item.component.ts",
     "./dev/weather/weather-item.ts",
-    "./dev/weather/weather-list.component.ts"
+    "./dev/weather/weather-list.component.ts",
+    "./dev/weather/weather.data.ts"
   ]
 }

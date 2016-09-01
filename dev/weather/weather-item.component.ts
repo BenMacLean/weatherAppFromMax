@@ -16,10 +16,11 @@ import {WeatherItem} from "./weather-item";
     `,
     styleUrls: ['src/css/weather-item.css']
 })
+
 export class WeatherItemComponent {
     weatherItem: WeatherItem;
 
     constructor() {
-      this.weatherItem = new WeatherItem('London', 'RAINY', 32);
+      this.weatherItem = new WeatherItem('London', 'RAINY', 4);
     }
 }
