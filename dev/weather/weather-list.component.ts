@@ -7,7 +7,7 @@ import {WEATHER_ITEMS} from "./weather.data";
     selector: 'weather-list',
     template: `
         <section class="weather-list">
-            <weather-item *ngFor="#weatherItem of weatherItems" [weatherItem]="weatherItem"></weather-item>
+            <weather-item *ngFor="#weatherItem of weatherItems" [item]="weatherItem"></weather-item>
         </section>
     `,
     directives: [WeatherItemComponent]

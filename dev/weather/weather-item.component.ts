@@ -15,7 +15,7 @@ import {WeatherItem} from "./weather-item";
         </article>
     `,
     styleUrls: ['src/css/weather-item.css'],
-    inputs: ['weatherItem']
+    inputs: ['weatherItem: item']
 })
 
 export class WeatherItemComponent {
