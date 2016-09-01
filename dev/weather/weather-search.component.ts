@@ -1,12 +1,13 @@
-import {Component} from "angular2/core"
+import {Component} from "angular2/core";
+import {ControlGroup} from "angular2/common";
 
 @Component({
     selector: 'my-weather-search',
     template: `
     <section class="weather-search">
-        <form>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <label for="city">City</label>
-            <input type="text" id="city" required>
+            <input ngControl="location" type="text" id="city" required>
             <button type="submit">Add City</button>
         </form>
         <div>
@@ -17,4 +18,7 @@ import {Component} from "angular2/core"
 })
 export class WeatherSearchComponent {
 
+  onSubmit(form: ControlGroup) {
+    console.log(form);
+  }
 }
