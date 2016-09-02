@@ -12,7 +12,7 @@ import {WeatherService} from "./weather.service"
         </section>
     `,
     directives: [WeatherItemComponent],
-    providers: [WeatherService]
+  
 })
 
 export class WeatherListComponent implements OnInit {
