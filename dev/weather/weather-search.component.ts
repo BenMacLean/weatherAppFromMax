@@ -24,7 +24,7 @@ export class WeatherSearchComponent implements OnInit
 {
 
   private searchStream = new Subject<string>();
-  data: any {};
+  data: any = {};
 
   constructor (private _weatherService: WeatherService) {}
 
