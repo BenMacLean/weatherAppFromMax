@@ -14,7 +14,7 @@ import {Subject} from 'rxjs/Rx';
             <button type="submit">Add City</button>
         </form>
         <div>
-            <span class="info"> City found:</span> City name
+            <span class="info"> City found:</span> {{data.name}}
         </div>
     </section>
   `,
@@ -24,7 +24,7 @@ export class WeatherSearchComponent implements OnInit
 {
 
   private searchStream = new Subject<string>();
-
+  data: any {};
 
   constructor (private _weatherService: WeatherService) {}
 
@@ -47,7 +47,7 @@ export class WeatherSearchComponent implements OnInit
     this.searchStream
         .switchMap((input:string) => this._weatherService.searchWeatherData(input))
         .subscribe(
-          data => console.log(data)
+          data => this.data = data
         );
   }
 }
