@@ -1,7 +1,8 @@
-import {Component} from "angular2/core";
+import {Component, OnInit} from "angular2/core";
 import {ControlGroup} from "angular2/common";
 import {WeatherService} from "./weather.service";
 import {WeatherItem} from "./weather-item";
+import {Subject} from 'rxjs/Rx';
 
 @Component({
     selector: 'my-weather-search',
@@ -9,7 +10,7 @@ import {WeatherItem} from "./weather-item";
     <section class="weather-search">
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <label for="city">City</label>
-            <input ngControl="location" type="text" id="city" required>
+            <input ngControl="location" type="text" id="city" (input)="onSearchLocation(input.value)" required #input>
             <button type="submit">Add City</button>
         </form>
         <div>
@@ -19,7 +20,11 @@ import {WeatherItem} from "./weather-item";
   `,
   providers: [WeatherService]
 })
-export class WeatherSearchComponent {
+export class WeatherSearchComponent implements OnInit
+{
+
+  private searchStream = new Subject<string>();
+
 
   constructor (private _weatherService: WeatherService) {}
 
@@ -31,5 +36,18 @@ export class WeatherSearchComponent {
             this._weatherService.addWeatherItem(weatherItem);
       }
     );
+  }
+
+  onSearchLocation(cityName: string){
+    this.searchStream
+        .next(cityName);
+  }
+
+  ngOnInit(){
+    this.searchStream
+        .switchMap((input:string) => this._weatherService.searchWeatherData(input))
+        .subscribe(
+          data => console.log(data)
+        );
   }
 }
