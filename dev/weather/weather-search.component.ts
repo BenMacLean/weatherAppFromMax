@@ -45,6 +45,8 @@ export class WeatherSearchComponent implements OnInit
 
   ngOnInit(){
     this.searchStream
+        .debounceTime(300)
+        .distinctUntilChanged()
         .switchMap((input:string) => this._weatherService.searchWeatherData(input))
         .subscribe(
           data => this.data = data
