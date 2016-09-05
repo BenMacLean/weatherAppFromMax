@@ -8,7 +8,7 @@ import {Subject} from 'rxjs/Rx';
     selector: 'my-weather-search',
     template: `
     <section class="weather-search">
-        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <form (ngSubmit)="onSubmit(f)">
             <label for="city">City</label>
             <input ngControl="location" type="text" id="city" (input)="onSearchLocation(input.value)" required #input>
             <button type="submit">Add City</button>
@@ -18,38 +18,32 @@ import {Subject} from 'rxjs/Rx';
         </div>
     </section>
   `,
-  providers: [WeatherService]
+    providers: [WeatherService]
 })
-export class WeatherSearchComponent implements OnInit
-{
+export class WeatherSearchComponent implements OnInit {
 
-  private searchStream = new Subject<string>();
-  data: any = {};
+    private searchStream = new Subject<string>();
+    data: any = {};
 
-  constructor (private _weatherService: WeatherService) {}
+    constructor(private _weatherService: WeatherService) { }
 
-  onSubmit(form: ControlGroup) {
-    this._weatherService.searchWeatherData(form.value.location)
-    .subscribe(
-      data => {
+    onSubmit() {
         const weatherItem = new WeatherItem(data.name, data.weather[0].description, data.main.temp);
-            this._weatherService.addWeatherItem(weatherItem);
-      }
-    );
-  }
+        this._weatherService.addWeatherItem(weatherItem);
+    }
 
-  onSearchLocation(cityName: string){
-    this.searchStream
-        .next(cityName);
-  }
+    onSearchLocation(cityName: string) {
+        this.searchStream
+            .next(cityName);
+    }
 
-  ngOnInit(){
-    this.searchStream
-        .debounceTime(300)
-        .distinctUntilChanged()
-        .switchMap((input:string) => this._weatherService.searchWeatherData(input))
-        .subscribe(
-          data => this.data = data
-        );
-  }
+    ngOnInit() {
+        this.searchStream
+            .debounceTime(300)
+            .distinctUntilChanged()
+            .switchMap((input: string) => this._weatherService.searchWeatherData(input))
+            .subscribe(
+            data => this.data = data
+            );
+    }
 }
