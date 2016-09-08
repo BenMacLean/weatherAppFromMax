@@ -7,7 +7,7 @@ import {WeatherItem} from "./weather-item";
         <article class="weather-element">
             <div class="col-1">
                 <h3>{{ weatherItem.cityName }}</h3>
-                <p class="info">{{ weatherItem.description }}</p>
+                <p class="info">{{ weatherItem.description.toUpperCase() }}</p>
             </div>
             <div class="col-2">
                 <span class="temperature">{{ weatherItem.temperature.toFixed(0) }}˚C</span>
