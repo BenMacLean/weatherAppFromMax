@@ -6,7 +6,7 @@ import {WeatherSearchComponent} from "./weather/weather-search.component";
     selector: 'my-app',
     template: `
         <header>
-            <h1>Angular 2 Weather</h1>
+            <h1>Weather Search App</h1>
         </header>
       <my-weather-search></my-weather-search>
         <weather-list></weather-list>
