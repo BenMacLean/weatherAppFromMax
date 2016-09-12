@@ -1,7 +1,8 @@
-import {Component} from "angular2/core";
+import {Component, OnInit} from "angular2/core";
 import {Profile} from "./profile";
 import {ProfileService} from "./profile.service";
 import {WeatherService} from "./weather/weather.service";
+
 
 
 @Component({
@@ -20,8 +21,12 @@ import {WeatherService} from "./weather/weather.service";
   providers: [ProfileService]
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
     profiles: Profile[];
 
     constructor (private _profileService: ProfileService, private _weatherService: WeatherService){}
+
+    ngOnInit(){
+      this.profiles = this._profileService.getProfiles();
+    }
 }
