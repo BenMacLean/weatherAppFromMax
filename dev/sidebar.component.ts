@@ -1,4 +1,9 @@
 import {Component} from "angular2/core";
+import {Profile} from "./profile";
+import {ProfileService} from "./profile.service";
+import {WeatherService} from "./weather/weather.service";
+
+
 @Component({
   selector: 'my-sidebar',
   template: `
@@ -11,9 +16,12 @@ import {Component} from "angular2/core";
          </article>
 
   `,
-  styleUrls:['src/css/sidebar.css']
+  styleUrls:['src/css/sidebar.css'],
+  providers: [ProfileService]
 })
 
 export class SidebarComponent {
+    profiles: Profile[];
 
+    constructor (private _profileService: ProfileService, private _weatherService: WeatherService){}
 }

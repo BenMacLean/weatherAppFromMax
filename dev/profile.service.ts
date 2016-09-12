@@ -10,4 +10,8 @@ export class ProfileService {
     const profile = new Profile(profileName, cities);
     this.profiles.push(profile);
   }
+
+  getProfiles(){
+    return this.profiles;
+  }
 }
