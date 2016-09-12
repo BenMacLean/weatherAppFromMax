@@ -10,7 +10,8 @@ import {Component} from "angular2/core";
            <span class="delete" (click)="onDeleteProfile($event)">X</span>
          </article>
 
-  `
+  `,
+  styleUrls:['src/css/sidebar.css']
 })
 
 export class SidebarComponent {
