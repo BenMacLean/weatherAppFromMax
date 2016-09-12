@@ -10,7 +10,7 @@ import {WeatherService} from "./weather/weather.service";
   template: `
       <h3>Saved Profiles </h3>
       <button (click)="onSaveNew()">Save List to Profile</button>
-      <article class="profile" *ngFor="let profile of profiles">
+      <article class="profile" *ngFor="#profile of profiles">
            <h4>{{ profile.profileName }}</h4>
            <p>Cities: {{ profile.cities.join(', ') }}</p>
            <span class="delete" (click)="onDeleteProfile($event)">X</span>
