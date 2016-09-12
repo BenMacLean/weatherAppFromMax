@@ -3,8 +3,12 @@ import {Component} from "angular2/core";
   selector: 'my-sidebar',
   template: `
       <h3?Saved Profiles </h3>
-      <button>Save List to Profile</button>
-  `
+      <button (click)="onSaveNew()">Save List to Profile</button>
+  `   <article>
+        <h4>Profile Name</h4>
+        <p>Cities: New York, London</p>
+        <span class="delete" (click)="onDeleteProfile($event)>x</span>
+      </article>
 
 })
 
