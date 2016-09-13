@@ -11,7 +11,7 @@ import {WeatherItem} from "./weather/weather-item";
   template: `
       <h3>Saved Profiles </h3>
       <button (click)="onSaveNew()">Save List to Profile</button>
-      <article class="profile" *ngFor="#profile of profiles">
+      <article class="profile" *ngFor="#profile of profiles" (click)="onLoadProfile">
            <h4>{{ profile.profileName }}</h4>
            <p>Cities: {{ profile.cities.join(', ') }}</p>
            <span class="delete" (click)="onDeleteProfile($event, profile)">X</span>
@@ -32,6 +32,12 @@ export class SidebarComponent implements OnInit {
         return element.cityName;
       })
       this._profileService.saveNewProfile(cities);
+    }
+
+    onLoadProfile(profile: Profile){
+      this._weatherService.clearWeatherItems();
+      for (let i = 0; i < profile.cities.length; i++)
+        this._weatherService.searchWeatherData(profile.cities[i])
     }
 
     ngOnInit(){
