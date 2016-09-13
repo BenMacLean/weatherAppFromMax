@@ -2,7 +2,7 @@ import {Profile} from "./profile";
 
 export class ProfileService {
   private profiles: Profile[] = [
-      new Profile('Default Profile', ['New York, London, Fredericton'])
+      new Profile('Default Profile', ['New York', 'London', 'Fredericton'])
   ];
 
   saveNewProfile(cities: string[]){

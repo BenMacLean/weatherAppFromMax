@@ -38,6 +38,13 @@ export class SidebarComponent implements OnInit {
       this._weatherService.clearWeatherItems();
       for (let i = 0; i < profile.cities.length; i++)
         this._weatherService.searchWeatherData(profile.cities[i])
+            .retry()
+            .subscribe(
+                data => {
+                  const weatherItem = new WeatherItem(data.name, data.weather[0].description, data.main.temp);
+                  this._weatherService.addWeatherItem(weatherItem);
+                }
+            );
     }
 
     ngOnInit(){
