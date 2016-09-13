@@ -31,6 +31,7 @@ export class SidebarComponent implements OnInit {
       const cities = this._weatherService.getWeatherItems().map(function (element: WeatherItem){
         return element.cityName;
       })
+      this._profileService.saveNewProfile(cities);
     }
 
     ngOnInit(){
