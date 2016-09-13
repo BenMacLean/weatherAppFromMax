@@ -2,6 +2,7 @@ import {Component, OnInit} from "angular2/core";
 import {Profile} from "./profile";
 import {ProfileService} from "./profile.service";
 import {WeatherService} from "./weather/weather.service";
+import {WeatherItem} from "./weather/weather-item";
 
 
 
@@ -13,7 +14,7 @@ import {WeatherService} from "./weather/weather.service";
       <article class="profile" *ngFor="#profile of profiles">
            <h4>{{ profile.profileName }}</h4>
            <p>Cities: {{ profile.cities.join(', ') }}</p>
-           <span class="delete" (click)="onDeleteProfile($event)">X</span>
+           <span class="delete" (click)="onDeleteProfile($event, profile)">X</span>
          </article>
 
   `,
@@ -25,6 +26,12 @@ export class SidebarComponent implements OnInit {
     profiles: Profile[];
 
     constructor (private _profileService: ProfileService, private _weatherService: WeatherService){}
+
+    onSaveNew(){
+      const cities = this._weatherService.getWeatherItems().map(function (element: WeatherItem){
+        return element.cityName;
+      })
+    }
 
     ngOnInit(){
       this.profiles = this._profileService.getProfiles();
